@@ -311,14 +311,14 @@ Nous allons remédier à ce problème, pour cela arrêtez le conteneur actuel av
 Lancez à présent un conteneur en montant le dossier où se trouve cette tutoriel, en mode serveur :
 
 ```bash
-# Pour Mac et Linux
-docker run -d -p 8080:80 -v $PWD:/var/www/html --name web php:7-apache
+# Pour Mac, Linux et Windows Powershell
+docker run -d -p 8080:80 -v ${PWD}:/var/www/html --name web php:7-apache
 
-# Pour Windows
+# Pour Windows CMD
 docker run -d -p 8080:80 -v %cd%:/var/www/html --name web php:7-apache
 ```
 
-> le flag `-v $PWD:/var/www/html` ou `-v %cd%:/var/www/html`  pour Windows, permet de spécifier à docker de monter le dossier où l'on se trouve ($PWD sous Mac/Linux et %cd% sous Windows) sur le dossier /var/www/html du conteneur. Ainsi lorsque le serveur apache va chercher /var/www/html/index.php, il trouvera en vérité le fichier présent dans ce dossier.
+> le flag `-v ${PWD}:/var/www/html`, permet de spécifier à docker de monter le dossier où l'on se trouve (le contenu de ${PWD} ou %cd%) sur le dossier /var/www/html du conteneur. Ainsi lorsque le serveur apache va chercher /var/www/html/index.php, il trouvera en vérité le fichier présent dans ce dossier.
 
 Visitez à présent l'URL http://localhost:8080 !
 
