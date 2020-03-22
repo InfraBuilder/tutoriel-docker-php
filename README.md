@@ -142,7 +142,7 @@ Il y a également de nombreuses images dites officielles, comme par exemple :
 - Memcached ( https://hub.docker.com/_/memcached/ )
 - ...
 
-Vous remarquerez que ces images ont un lien vers Docker Hub avec un underscore suivi du nom de l'image, ex: "/_/<image>", c'est le signe qu'elle sont officielles. En général ces images sont garanties sans vérole, et suivent généralement le protocole de mise à jour de la distribution ou de l'application qu'elle fournit.
+Vous remarquerez que ces images ont un lien vers Docker Hub avec un underscore suivi du nom de l'image, ex: "/_/{image}", c'est le signe qu'elle sont officielles. En général ces images sont garanties sans vérole, et suivent généralement le protocole de mise à jour de la distribution ou de l'application qu'elle fournit.
 
 Il y a également des images qui sont maintenues par un ou plusieurs mainteneurs, ou par l'éditeur lui-même du logiciel. Par exemple :
 
@@ -152,7 +152,7 @@ Il y a également des images qui sont maintenues par un ou plusieurs mainteneurs
 - SFTP par Atmoz ( https://hub.docker.com/r/atmoz/sftp )
 - ...
 
-Ces images sont maintenues par des indépendants ou des organisations, elles sont disponibles via des URL du type : "/r/<maintainer>/<image>"
+Ces images sont maintenues par des indépendants ou des organisations, elles sont disponibles via des URL du type : "/r/{maintainer}/{image}"
 
 ## Les tags d'image
 
@@ -379,8 +379,8 @@ Voici un descriptif rapide de chaque instruction :
 - `ENV <VAR>=<valeur>` : Déclare une variable d'environnement qui sera utilisable dans les autres instructions du Dockerfile, ainsi que dans notre application
 - `RUN <commande-linux` : Commande qui va être exécutée et qui va modifier le conteneur **au build** (par exemple: installation de paquet, création de dossier/fichier, compilation de code, etc.). Il peut y avoir plusieurs fois l'instruction RUN, mais on essaie de les regrouper autant que possible avec des `&&`
 - `WORKDIR <dossier-de-travail>` : Permet de définir le dossier de travail dans lequel s'exécuteront toutes les instructions suivantes 
-- `COPY --chown=<user>:<group> <dossier-local>/* <dossier-conteneur>/` : Copie les fichiers contenus dans <dossier-local> vers <dossier-conteneur> dans le conteneur, et applique un changement de propriétaire avec le <user> et le <group> du conteneur.
--  `ADD <source> <dossier-conteneur>/` : Cette instruction est assez similaire à COPY, mais va permettre des traitements plus intelligents. Si la source est une archive "tar.gz", elle sera décompresser dans le <dossier-conteneur> indiqué. Si la source est une URL, la ressource sera téléchargée et stockée dans <dossier-conteneur>. *Attention, si la source est une URL vers un tar.gz, il ne sera pas décompressé !*
+- `COPY --chown=<user>:<group> <dossier-local>/* <dossier-conteneur>/` : Copie les fichiers contenus dans *dossier-local* vers *dossier-conteneur* dans le conteneur, et applique un changement de propriétaire avec le *user* et le *group* du conteneur.
+-  `ADD <source> <dossier-conteneur>/` : Cette instruction est assez similaire à COPY, mais va permettre des traitements plus intelligents. Si la source est une archive "tar.gz", elle sera décompresser dans le *dossier-conteneur* indiqué. Si la source est une URL, la ressource sera téléchargée et stockée dans *dossier-conteneur*. Attention, si la source est une URL vers un tar.gz, il ne sera pas décompressé !
 - `EXPOSE <port>` : Déclare que le conteneur rend un service sur le port TCP concerné
 - `USER <utilisateur-conteneur>` : Définit l'utilisateur linux du conteneur qui lancera toutes les instructions à partir de cette ligne
 - `CMD ["<commande-par-défaut>"]` : Définit la commande par défaut, si la personne qui lance le conteneur ne définit pas de commande après le nom de l'image dans son "docker run", c'est cette commande qui sera lancée. Doit impérativement être au format exec (tableau au format json) pour assurer un traitement correct des signaux linux.
