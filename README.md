@@ -225,7 +225,7 @@ docker container ls
 Et on lance un nouveau conteneur intéractif, mais cette fois le but est d'ouvrir une console vers le serveur redis qu'on vient de lancer :
 
 ```bash
-docker run -it --link mon-serveur-redis:serveur redis:5-alpine redis-cli -h serveur
+docker run -it --link monredis:serveur redis:5-alpine redis-cli -h serveur
 ```
 
 > le flag `--link mon-serveur-redis:serveur` va indiquer à docker de créer une entrée "serveur" dans le /etc/hosts du conteneur qu'on lance, pointant vers l'adresse IP du conteneur `mon-serveur-redis`. Ensuite on retrouve l'image qu'on souhaite lancer "redis:5-alpine", et tout ce qui est derrière est interprété par docker comme étant la commande qu'on souhaite lancer dans notre conteneur.
