@@ -356,7 +356,7 @@ docker run -d -p 8080:80 --name web monsite:montag
 
 Notre site est joignable sur l'URL http://localhost:8080 et sert notre fichier index.php directement ! Par contre, comme le dossier /var/www/html n'est pas un montage du dossier local, si on modifie le contenu du fichier index.php sur notre machine, cela n'aura aucun impact sur le conteneur et sur l'image. L'image est immuable. Si je veux la modifier, je dois la reconstruire.
 
-##Conteneurisation avancée
+## Conteneurisation avancée
 
 Voici les instructions les plus importantes du Dockerfile : 
 
